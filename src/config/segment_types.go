@@ -117,6 +117,8 @@ const (
 	LASTFM SegmentType = "lastfm"
 	// LUA writes the active lua version
 	LUA SegmentType = "lua"
+	// MEMPOOLBLOCK
+	MEMPOOLBLOCK = "mempoolblock"
 	// MERCURIAL writes the Mercurial source control information
 	MERCURIAL SegmentType = "mercurial"
 	// MOJO writes the active version of Mojo and the name of the Magic virtual env
@@ -276,6 +278,7 @@ var Segments = map[SegmentType]func() SegmentWriter{
 	KUBECTL:         func() SegmentWriter { return &segments.Kubectl{} },
 	LASTFM:          func() SegmentWriter { return &segments.LastFM{} },
 	LUA:             func() SegmentWriter { return &segments.Lua{} },
+	MEMPOOLBLOCK:    func() SegmentWriter { return &segments.MempoolBlock{} },
 	MERCURIAL:       func() SegmentWriter { return &segments.Mercurial{} },
 	MOJO:            func() SegmentWriter { return &segments.Mojo{} },
 	MVN:             func() SegmentWriter { return &segments.Mvn{} },
