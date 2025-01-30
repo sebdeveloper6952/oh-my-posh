@@ -1,28 +1,28 @@
 package segments
 
 import (
-	"github.com/jandedobbeleer/oh-my-posh/src/properties"
-	"github.com/jandedobbeleer/oh-my-posh/src/runtime"
+	"io"
+	"net/http"
 )
 
 type MempoolBlock struct {
 	base
+
+	Height string
 }
 
-const (
-	//NewProp enables something
-	NewProp properties.Property = "newprop"
-)
-
 func (n *MempoolBlock) Enabled() bool {
+	resp, err := http.Get("https://mempool.space/api/blocks/tip/height")
+	if err != nil {
+		return false
+	}
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	n.Height = string(body)
+
 	return true
 }
 
 func (n *MempoolBlock) Template() string {
-	return " {{.Text}} "
-}
-
-func (n *MempoolBlock) Init(props properties.Properties, env runtime.Environment) {
-	n.props = props
-	n.env = env
+	return " {{ .Height }} "
 }

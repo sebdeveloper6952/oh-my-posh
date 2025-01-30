@@ -352,6 +352,7 @@
             "kubectl",
             "lastfm",
             "lua",
+            "mempoolblock",
             "mercurial",
             "mojo",
             "mvn",
@@ -4603,6 +4604,23 @@
           "then": {
             "title": "Display GitVersion segment",
             "description": "https://ohmyposh.dev/docs/segments/cli/gitversion"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": { "const": "mempoolblock" }
+            }
+          },
+          "then": {
+            "title": "Mempool Block",
+            "description": "https://ohmyposh.dev/docs/new",
+            "properties": {
+              "properties": {
+                "properties": {
+                }
+              }
+            }
           }
         },
         {
